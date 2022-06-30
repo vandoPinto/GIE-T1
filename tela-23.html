@@ -1,3 +1,14 @@
+<style>
+    .jan {
+        z-index: 30;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, .8);
+    }
+</style>
 <div style="height: 60px; width: 100%; background-color: #a9e5ea;">
     <img style="height: 60px; width: 460px; position: absolute; right: 0px;" src="recursos/imgs/H1.png">
     <p style="position: absolute;color: #294666;margin-left: 43px;margin-top: 26px;font-size: 12px;">TÓPICO<strong>
@@ -6,17 +17,51 @@
         INFORMADAS POR EVIDÊNCIAS: O QUE SÃO? ONDE VIVEM? DO QUE SE ALIMENTAM?</p>
 </div>
 <div>
-    <div style="margin-left: 40px;margin-top: 126px;width: 808px;">
-        <p>No Brasil, a Evipnet foi implantada em 2007 sob a coordenação do Ministério da Saúde, através do
-            Departamento de Ciência
-            e Tecnologia, da Secretaria de Ciência, Tecnologia, Inovação e insumos Estratégicos em Saúde
-            (DECIT/SCTIE/MS). </p>
-        <p>Esse
-            departamento é responsável pela promoção do uso sistemático e transparente de evidências científicas e
-            tradução do
-            conhecimento para subsidiar a criação, a expansão e o aperfeiçoamento de políticas de saúde e a tomada
-            de decisão
-            qualificada pelos gestores do Sistema Único de Saúde (BRASIL, 2017).</p>
+    <div style="display: flex;margin-top: 72px;margin-left: 40px;">
+        <div style="width: 386px;">
+            <p>Como principal estratégia institucional para promoção de intercâmbio entre pesquisadores e gestores e
+                tradução do
+                conhecimento para o SUS, a Evipnet organiza no Brasil núcleos de evidência científica (NEV) e grupos
+                de trabalho (GT),
+                que ofertam principalmente atividades de capacitação e desenvolvimento de produtos de tradução do
+                conhecimento e
+                disseminação. De 2013 a 2019, foram implantados 12 NEVs no país, nos âmbitos estadual, municipal e
+                no Distrito Federal.</p>
+            <p>Clique no mapa para saber como ocorre a oferta de capacitação.</p>
+        </div>
+        <div class="animate__animated animate__backInRight">
+            <img id="botao_1" src="recursos/imgs/img-slide-22.png"
+                style="width: 259px; margin-left: 90px; margin-top: 0px; cursor: pointer;">
+        </div>
+        <div>
+            <div class="jan" id="janela_1">
+                <div
+                    style="width: 743px;height: 235px;background: #1B8992 0% 0% no-repeat padding-box;border-radius: 12px;display: flex;position: absolute;top: 140px;left: 80px;align-items: center;justify-content: space-evenly;">
+                    <div
+                        style="width: 647px;height: 230px;display: flex;flex-direction: column;justify-content: space-between;align-items: center;">
+                        <p style="color: white;">Entre as ofertas de capacitação, assume destaque a iniciativa do
+                            curso
+                            de especialização em Gestão de Políticas de Saúde
+                            Informadas por Evidências (ESPIE), promovido pelo Ministério da Saúde em parceria com o
+                            Instituto de Ensino e Pesquisa
+                            do Hospital Sírio-Libanês (IEP-HSL), através do Programa de Apoio ao Desenvolvimento
+                            Institucional do SUS (PROADI-SUS).
+                            São parceiros também dessa iniciativa o CONASS e o CONASEMS, que, em conjunto, já
+                            capacitaram 608 profissionais desde a
+                            primeira versão do projeto, em âmbito nacional. </p>
+                        <p style="color: white;">O PROADI-SUS foi lançado pelo Ministério da Saúde em 2008 como um
+                            programa pelo qual instituições hospitalares, sem fins lucrativos, passaram a
+                            desenvolver
+                            projetos utilizando as suas
+                            competências para qualificar e desenvolver o SUS em todo o Brasil. Até 2019, cerca de
+                            550
+                            projetos foram desenvolvidos
+                            e, atualmente, 159 projetos estão em andamento.</p>
+                    </div>
+                    <p style="font-size: 13px;color: white;position: absolute;top: 0px;left: 730px;">x</p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <footer style="width: 1008px;height: 19px;display: flex;background-color: #CEE4F1;">
@@ -24,3 +69,28 @@
         <p style="color: #294666;font-size: 11px;">GESTÃO DA APS INFORMADA POR EVIDÊNCIAS</p>
     </div>
 </footer>
+<script>
+    $(() => {
+        let janelas = $(document).find('[id^=janela]').css('cursor', 'pointer').on("click", apagarJanelas);
+        apagarJanelas();
+        $(document).find('[id^=btn]').hide();
+        let botoes = $(document).find('[id^=botao]').map((index, botao) => {
+            $(botao).css('cursor', 'pointer');
+            $(botao).hover(() => {
+                $(document).find(`[id=btn_${index + 1}_2]`).show();
+            });
+            $(botao).mouseleave(() => {
+                $(document).find('[id^=btn]').hide();
+            });
+            $(botao).click(() => {
+                apagarJanelas();
+                $(janelas[index]).fadeIn();
+            })
+        })
+        function apagarJanelas() {
+            janelas.map((index, janela) => {
+                $(janela).hide();
+            })
+        }
+    })
+</script>
